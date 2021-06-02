@@ -74,6 +74,7 @@ public struct AnyCodable: Codable {
         RegisterType(Data.self)
         RegisterType(Date.self)
         RegisterType(URL.self)
+        RegisterType([UInt8].self)
         
         encodableClosures[ArrayTypeName] = { value, container in
             var unkeyedContainer = container.nestedUnkeyedContainer(forKey: .value)
