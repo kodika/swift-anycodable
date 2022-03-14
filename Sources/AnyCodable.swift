@@ -21,6 +21,7 @@ public struct AnyCodable: Codable {
     public static let ArrayTypeName = "Array"
     public static let SetTypeName = "Set"
     public static let DictionaryTypeName = "Dictionary"
+    public static let NSNullTypeName = "NSNull"
     
     public static func RegisterType<T: Codable>(_ type: T.Type) {
         closuresLock.lock()
@@ -147,6 +148,11 @@ public struct AnyCodable: Codable {
         AnyCodable.RegisterBasicTypes()
         self.value = value
         self.typeName = AnyCodable.DictionaryTypeName
+    }
+    
+    public init(value: NSNull) throws {
+        self.value = value
+        self.typeName = AnyCodable.NSNullTypeName
     }
     
     public init(value: Set<AnyHashable>) throws {
